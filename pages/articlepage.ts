@@ -19,7 +19,7 @@ export class ArticlePage {
     this.commentInput = page.locator('#input-comment');
     this.confirmButton = page.locator('#button-comment');
     this.successMessage = page.locator('.alert-success');
-    this.errorNameInputMessage = page.locator('.article-thumb.image-top .text-ellipsis-2');
+    this.errorNameInputMessage = page.locator('body > div:nth-child(1) > div:nth-child(5) > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(9) > form:nth-child(2) > div:nth-child(1) > div:nth-child(2)');
     this.errorCommentInputMessage = page.locator('body > div:nth-child(1) > div:nth-child(5) > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(9) > form:nth-child(2) > div:nth-child(3) > div:nth-child(2)');
   }
 
