@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
 import { HomePage } from '../pages/homepage';
 import { BlogPage } from '../pages/blogpage';
-import { ArticlePage } from '../pages/articklepage';
+import { ArticlePage } from '../pages/articlepage';
 
 
-test('Submit a comment on a blog post and validate the request', async ({ page }) => {
+test('Check a comment functionality on a blog post', async ({ page }) => {
   const name = 'Test';
   const email = 'test@test.com';
   const comment = 'TestTestTestTestTestTestTestTestTestTestTest';
@@ -35,6 +35,22 @@ if (responseBody.success === successMessage) {
   console.error('Expected success message not found!');
 }
   await expect(articlePage.successMessage).toHaveText(successMessage);
+});
+
+test('Check error messages for name and comment inputs for comment on a blog post', async ({ page }) => {
+  const errorNameInputMessage = 'Warning: Comment Name must be between 3 and 25 characters!';
+  const errorCommentInputMessage = 'Warning: Comment Text must be between 25 and 1000 characters!';
+
+  await page.route('**/maza/blog/article/write&article_id=*', (route) => {
+    route.continue();
+  });
+
+  const articlePage = new ArticlePage(page);
+
+  await articlePage.open();
+  await articlePage.confirmButton.click()
+  await expect(articlePage.errorNameInputMessage).toHaveText(errorNameInputMessage);
+  await expect(articlePage.errorCommentInputMessage).toHaveText(errorCommentInputMessage);
 });
 
 
