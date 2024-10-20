@@ -8,18 +8,17 @@ UI Test for checking comments functionality for this website https://ecommerce-p
 - npm (comes with Node.js)
 - Git
 
-## Installation
+## How to run locally
 
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/ArtemActum/Playwright.git
-   cd Playwright
-2. Clone the repository:
+1. Installation npm and playwright:
    
    ```bash
    npm install
-3. To run all Playwright tests:
+
+   ```bash
+   npx playwright install
+
+2. To run all Playwright tests:
 
    ```bash
    npx playwright test
