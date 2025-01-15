@@ -6,7 +6,7 @@ export class BlogPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.articles = page.locator('.article-thumb.image-top .text-ellipsis-2');
+    this.articles = page.locator('.article-thumb .title a');
   }
 
   async clickOnFirstArticle() {

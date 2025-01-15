@@ -13,13 +13,13 @@ export class ArticlePage {
 
   constructor(page: Page) {
     this.page = page;
-    this.commentForm = page.locator('#entry_210911');
+    this.commentForm = page.locator('.content #form-comment');
     this.nameInput = page.locator('#input-name');
     this.emailInput = page.locator('#input-email');
     this.commentInput = page.locator('#input-comment');
     this.confirmButton = page.locator('#button-comment');
     this.successMessage = page.locator('.alert-success');
-    this.errorNameInputMessage = page.locator('body > div:nth-child(1) > div:nth-child(5) > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(9) > form:nth-child(2) > div:nth-child(1) > div:nth-child(2)');
+    this.errorNameInputMessage = page.locator('//input[@name="name"]/following-sibling::*[@class="invalid-feedback"]');
     this.errorCommentInputMessage = page.locator('body > div:nth-child(1) > div:nth-child(5) > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(9) > form:nth-child(2) > div:nth-child(3) > div:nth-child(2)');
   }
 

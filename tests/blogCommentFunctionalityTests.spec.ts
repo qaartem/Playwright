@@ -1,29 +1,26 @@
-import { test, expect } from '@playwright/test';
-import { HomePage } from '../pages/homepage';
-import { BlogPage } from '../pages/blogpage';
-import { ArticlePage } from '../pages/articlepage';
+import { expect } from '@playwright/test';
+import { test } from "../baseTest";
+import { getValidComment } from "../helpers/testDataHelpers";
 
 
-test('Check a comment functionality on a blog post', async ({ page }) => {
+test('Check a comment functionality on a blog post', async ({ homePage,
+  blogPage, articlePage }) => {
   const name = 'Test';
   const email = 'test@test.com';
   const comment = 'TestTestTestTestTestTestTestTestTestTestTest';
+  const commentData = getValidComment();
   const successMessage = 'Thank you for your comment. It has been submitted to the webmaster for approval.';
 
-  await page.route('**/maza/blog/article/write&article_id=*', (route) => {
-    route.continue();
-  });
-
-  const homePage = new HomePage(page);
-  const blogPage = new BlogPage(page);
-  const articlePage = new ArticlePage(page);
+  // const homePage = new HomePage(page);
+  // const blogPage = new BlogPage(page);
+  // const articlePage = new ArticlePage(page);
 
   await homePage.open();
-  await homePage.navigateToBlogSection();
+  await homePage.clickOnBlogButtonOnTheHeaderMenu();
   await blogPage.clickOnFirstArticle();
   await articlePage.scrollToCommentForm();
   const [response] = await Promise.all([
-    page.waitForResponse(response => response.url().includes('/maza/blog/article/write&article_id=') && response.status() === 200),
+    articlePage.waitForResponse(response => response.url().includes('/maza/blog/article/write&article_id=') && response.status() === 200),
     articlePage.fillCommentForm(name, email, comment)
   ]);
   
@@ -37,15 +34,9 @@ if (responseBody.success === successMessage) {
   await expect(articlePage.successMessage).toHaveText(successMessage);
 });
 
-test('Check error messages for name and comment inputs for comment on a blog post', async ({ page }) => {
+test('Check error messages for name and comment inputs for comment on a blog post', async ({ articlePage }) => {
   const errorNameInputMessage = 'Warning: Comment Name must be between 3 and 25 characters!';
   const errorCommentInputMessage = 'Warning: Comment Text must be between 25 and 1000 characters!';
-
-  await page.route('**/maza/blog/article/write&article_id=*', (route) => {
-    route.continue();
-  });
-
-  const articlePage = new ArticlePage(page);
 
   await articlePage.open();
   await articlePage.confirmButton.click()
