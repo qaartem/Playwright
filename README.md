@@ -10,11 +10,13 @@ UI Test for checking comments functionality for this website https://ecommerce-p
 
 ## How to run locally
 
-1. Installation npm and playwright:
+1. Install npm:
    
    ```bash
    npm install
 
+2. Installation playwright:
+   
    ```bash
    npx playwright install
 
