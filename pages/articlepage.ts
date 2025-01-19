@@ -20,8 +20,9 @@ export class ArticlePage {
     this.confirmButton = page.locator('#button-comment');
     this.successMessage = page.locator('.alert-success');
     this.errorNameInputMessage = page.locator('//input[@name="name"]/following-sibling::*[@class="invalid-feedback"]');
-    this.errorCommentInputMessage = page.locator('body > div:nth-child(1) > div:nth-child(5) > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(9) > form:nth-child(2) > div:nth-child(3) > div:nth-child(2)');
+    this.errorCommentInputMessage = page.locator('//textarea[@name="text"]/following-sibling::*[@class="invalid-feedback"]');
   }
+
 
   async open() {
     await this.page.goto('https://ecommerce-playground.lambdatest.io/index.php?route=extension/maza/blog/article&article_id=37');
@@ -31,10 +32,24 @@ export class ArticlePage {
     await this.commentForm.scrollIntoViewIfNeeded();
   }
 
-  async fillCommentForm(name: string, email: string, comment: string) {
-    await this.nameInput.fill(name)
-    await this.emailInput.fill(email)
-    await this.commentInput.fill(comment)
-    await this.confirmButton.click()
+
+
+  async fillFormAndVerifySuccessMessage(name: string, email: string, comment: string, successMessage: string) {
+    const [response] = await Promise.all([
+      this.page.waitForResponse(response => response.url().includes('/maza/blog/article/write&article_id=') && response.status() === 200),
+      this.nameInput.fill(name, { timeout: 5000 }),
+      await expect(this.nameInput).toHaveValue(name, { timeout: 5000 }),
+      this.emailInput.fill(email),
+      await expect(this.emailInput).toHaveValue(email),
+      this.commentInput.fill(comment),
+      await expect(this.commentInput).toHaveValue(comment),
+      this.confirmButton.click(),
+      await expect(this.successMessage).toHaveText(successMessage),
+    ]);
+    return response;
+    
   }
+
+  
+
 }

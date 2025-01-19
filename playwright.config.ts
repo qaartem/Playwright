@@ -8,6 +8,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
+    baseURL: "https://ecommerce-playground.lambdatest.io/index.php?route=common/home",
     viewport: { width: 1980, height: 1080 },
     trace: 'on-first-retry',
   },
