@@ -25,7 +25,7 @@ export class ArticlePage {
   }
 
 
-  async open() {
+  async openArticlePage() {
     await this.page.goto(this.BLOG_URL);
   }
 

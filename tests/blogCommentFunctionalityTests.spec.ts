@@ -13,7 +13,7 @@ test('Check a comment functionality on a blog post', async ({ homePage,
 });
 
 test('Check error messages for name and comment inputs for comment on a blog post', async ({ articlePage }) => {
-  await articlePage.open();
+  await articlePage.openArticlePage();
   await articlePage.confirmButton.click()
   await expect(articlePage.errorNameInputMessage).toHaveText(ERROR_NAME_INPUT_MESSAGE);
   await expect(articlePage.errorCommentInputMessage).toHaveText(ERROR_COMMENT_INPUT_MESSAGE);
