@@ -1,4 +1,4 @@
-name: Faphouse Tests
+name: Lambdatest Playwright
 on:
   push:
     branches: [main]
