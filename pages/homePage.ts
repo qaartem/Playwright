@@ -11,7 +11,7 @@ export class HomePage {
   }
 
   async open() {
-    await this.page.goto(this.URL);
+    await this.page.goto('/');
   }
 
   async clickOnBlogButtonOnTheHeaderMenu() {

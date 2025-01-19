@@ -26,7 +26,7 @@ export class ArticlePage {
 
 
   async openArticlePage() {
-    await this.page.goto(this.BLOG_URL);
+    await this.page.goto("/index.php?route=extension/maza/blog/article&article_id=37");
   }
 
   async scrollToCommentForm() {
