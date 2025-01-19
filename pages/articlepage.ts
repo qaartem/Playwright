@@ -10,6 +10,7 @@ export class ArticlePage {
   readonly successMessage: Locator;
   readonly errorNameInputMessage: Locator;
   readonly errorCommentInputMessage: Locator;
+  private BLOG_URL = "/index.php?route=extension/maza/blog/article&article_id=37";
 
   constructor(page: Page) {
     this.page = page;
@@ -25,7 +26,7 @@ export class ArticlePage {
 
 
   async open() {
-    await this.page.goto('https://ecommerce-playground.lambdatest.io/index.php?route=extension/maza/blog/article&article_id=37');
+    await this.page.goto(this.BLOG_URL);
   }
 
   async scrollToCommentForm() {

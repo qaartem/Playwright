@@ -1,4 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
+import dotenv from "dotenv";
+import path from "path";
+dotenv.config({ path: path.resolve(__dirname, ".env") });
 
 export default defineConfig({
   testDir: './tests',
@@ -8,7 +11,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
-    baseURL: "https://ecommerce-playground.lambdatest.io/index.php?route=common/home",
+    baseURL: process.env.BASE_FRONTEND_URL,
     viewport: { width: 1980, height: 1080 },
     trace: 'on-first-retry',
   },

@@ -3,6 +3,7 @@ import { expect, type Locator, type Page } from '@playwright/test';
 export class HomePage {
   readonly page: Page;
   readonly blogSection: Locator;
+  private URL = "/";
 
   constructor(page: Page) {
     this.page = page;
@@ -10,7 +11,7 @@ export class HomePage {
   }
 
   async open() {
-    await this.page.goto('https://ecommerce-playground.lambdatest.io/index.php?route=common/home');
+    await this.page.goto(this.URL);
   }
 
   async clickOnBlogButtonOnTheHeaderMenu() {
