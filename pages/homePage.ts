@@ -11,7 +11,7 @@ export class HomePage {
   }
 
   async open() {
-    await this.page.goto('https://ecommerce-playground.lambdatest.io/');
+    await this.page.goto('/');
   }
 
   async clickOnBlogButtonOnTheHeaderMenu() {

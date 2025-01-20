@@ -21,6 +21,8 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+      - name: Debug environment variables
+        run: echo "BASE_FRONTEND_URL=$BASE_FRONTEND_URL"
       - name: Run Playwright tests
         env:
           BASE_FRONTEND_URL: ${{ secrets.BASE_FRONTEND_URL }}
