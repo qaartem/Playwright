@@ -23,7 +23,7 @@ jobs:
         run: npx playwright install --with-deps
       - name: Run Playwright tests
         env:
-          BASE_FRONTEND_URL: ${{ vars.BASE_FRONTEND_URL }}
+          BASE_FRONTEND_URL: ${{ secrets.BASE_FRONTEND_URL }}
         run: npx playwright test
       - uses: actions/upload-artifact@v4
         if: always()
