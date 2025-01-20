@@ -33,7 +33,9 @@ export class ArticlePage {
     await this.commentForm.scrollIntoViewIfNeeded();
   }
 
-
+  async clickOnConfirmButton() {
+    await this.confirmButton.click()
+  }
 
   async fillFormAndVerifySuccessMessage(name: string, email: string, comment: string, successMessage: string) {
     const [response] = await Promise.all([
@@ -50,6 +52,15 @@ export class ArticlePage {
     return response;
     
   }
+
+  async verifyNameErrorMessage(errorMessage: string) {
+    await expect(this.errorNameInputMessage).toHaveText(errorMessage);
+  }
+
+  async verifyCommentErrorMessage(errorMessage: string) {
+    await expect(this.errorCommentInputMessage).toHaveText(errorMessage);
+  }
+  
 
   
 
