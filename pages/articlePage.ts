@@ -26,7 +26,7 @@ export class ArticlePage {
 
 
   async openArticlePage() {
-    await this.page.goto("/index.php?route=extension/maza/blog/article&article_id=37");
+    await this.page.goto("https://ecommerce-playground.lambdatest.io/index.php?route=extension/maza/blog/article&article_id=37");
   }
 
   async scrollToCommentForm() {
